@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Web-based gambling awareness experience">
+    <title>All In - Gambling Awareness Experience</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app-container">
+        <header>
+            <h1>All In</h1>
+            <p class="tagline">A Gambling Awareness Experience</p>
+        </header>
+
+        <main id="story-content">
+            <!-- Twine story content will be rendered here -->
+            <div id="passages">
+                <div class="passage active" data-passage="start">
+                    <h2>Welcome</h2>
+                    <p>This is the beginning of your journey into understanding the realities of gambling.</p>
+                    <div class="choices">
+                        <button class="choice-btn" data-target="choice1">Continue</button>
+                    </div>
+                </div>
+
+                <div class="passage" data-passage="choice1">
+                    <h2>The Decision</h2>
+                    <p>Every choice has consequences. Understanding these consequences is the first step toward awareness.</p>
+                    <div class="choices">
+                        <button class="choice-btn" data-target="start">Start Over</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 All In - Gambling Awareness Project</p>
+            <p class="disclaimer">This is an educational experience about gambling awareness.</p>
+        </footer>
+    </div>
+
+    <!-- Twine Core Engine -->
+    <script src="twine-engine.js"></script>
+</body>
+</html>
