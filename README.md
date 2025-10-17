@@ -34,6 +34,7 @@ all-in/
 ├── index.html          # Main HTML structure
 ├── styles.css          # Styling and theme customization
 ├── twine-engine.js     # Narrative engine core
+├── story-example.js    # Example: How to extend the story (optional)
 ├── .gitignore          # Git ignore rules
 └── README.md           # This file
 ```
@@ -115,6 +116,20 @@ TwineHelpers.addChoice(
     'Choice Text',          // Button text
     'target-passage'        // Where this choice leads
 );
+```
+
+## Example Story Extension
+
+See `story-example.js` for a complete example of how to extend the skeleton with more passages and story logic. The example demonstrates:
+
+- Creating multiple interconnected passages
+- Adding choices to existing passages
+- Using story variables to track progress
+- Providing gambling awareness resources
+
+To use the example, include it in your HTML after `twine-engine.js`:
+```html
+<script src="story-example.js"></script>
 ```
 
 ## Browser Compatibility
