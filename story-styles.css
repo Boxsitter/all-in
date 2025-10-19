@@ -5,10 +5,10 @@ tw-story {
     font-family: Georgia, Cambria, "Times New Roman", Times, serif !important;
     background-color: transparent !important;
     color: #333 !important;
-    line-height: 1.7 !important;
+    line-height: 1.6 !important;
     margin: 0 !important;
     padding: 20px !important;
-    font-size: 1.125rem !important; /* slightly larger base size for readability */
+    font-size: 1rem !important;
 }
 
 /* Individual passage styling - clean card-like appearance */
@@ -83,8 +83,8 @@ tw-passage [style*="colour:#eed795"] code {
 /* Ensure paragraphs have proper spacing */
 tw-passage p {
     margin: 1rem 0 !important;
-    font-size: 1.15rem !important;
-    line-height: 1.7 !important;
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
 }
 
 /* Style any headers that might appear */
@@ -137,21 +137,10 @@ tw-debugger {
     display: none !important;
 }
 
-/* Choice layout: keep normal text left, align buttons on one centered row */
-tw-passage { text-align: left !important; }
-/* Make each paragraph that directly contains a link behave like an inline item */
-tw-passage p:has(> tw-link) {
-    display: inline-block !important;
+/* Custom styling for choice buttons to make them more prominent */
+tw-passage p:has(tw-link) {
     text-align: center !important;
-    margin: 1rem 0.5rem !important;
-}
-/* Center the collection of link paragraphs within the passage */
-tw-passage:has(> p:has(> tw-link)) {
-    text-align: center !important;
-}
-/* Ensure non-choice paragraphs remain left-aligned even if the passage is centered */
-tw-passage p:not(:has(> tw-link)) {
-    text-align: left !important;
+    margin: 2rem 0 !important;
 }
 
 /* Make choice links look more like buttons */
@@ -163,7 +152,7 @@ tw-passage tw-link {
     border-radius: 6px !important;
     font-weight: 600 !important;
     text-decoration: none !important;
-    display: inline-block !important; /* allow side-by-side */
+    display: inline-block !important;
     margin: 0.5rem !important;
     transition: all 0.3s ease !important;
     min-width: 200px !important;
