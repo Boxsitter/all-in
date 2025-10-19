@@ -1,47 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Web-based gambling awareness experience">
-    <title>All In - Gambling Awareness Experience</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>All In</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Simple page navigation system
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page-content');
+            const mainContent = document.querySelector('.main-content');
+            
+            // Function to show a specific page
+            function showPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => page.classList.remove('active'));
+                navLinks.forEach(link => link.classList.remove('active'));
+                
+                // Show target page
+                const targetPage = document.getElementById(pageId + '-page');
+                const targetNav = document.querySelector(`[data-page="${pageId}"]`);
+                
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
+                if (targetNav) {
+                    targetNav.classList.add('active');
+                }
+                
+                // Update URL hash
+                window.location.hash = pageId;
+
+                // Toggle full-width layout for story page so iframe can fill screen
+                if (mainContent) {
+                    if (pageId === 'story') {
+                        mainContent.classList.add('full-width');
+                    } else {
+                        mainContent.classList.remove('full-width');
+                    }
+                }
+            }
+            
+            // Add click handlers to nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    showPage(pageId);
+                });
+            });
+            
+            // Handle direct URL access with hash
+            if (window.location.hash) {
+                const pageId = window.location.hash.substring(1);
+                showPage(pageId);
+            } else {
+                // ensure correct layout on initial load (defaults to home)
+                showPage('home');
+            }
+            
+            // Handle browser back/forward
+            window.addEventListener('hashchange', function() {
+                const pageId = window.location.hash.substring(1) || 'home';
+                showPage(pageId);
+            });
+        });
+    </script>
 </head>
 <body>
-    <div id="app-container">
-        <header>
+    <!-- Custom Header -->
+    <header class="site-header">
+        <div class="header-content">
             <h1>All In</h1>
-            <p class="tagline">A Gambling Awareness Experience</p>
-        </header>
+    
+            <nav class="header-nav">
+                <a href="#home" class="nav-link active" data-page="home">Home</a>
+                <a href="#story" class="nav-link" data-page="story">Interactive Story</a>
+                <a href="#resources" class="nav-link" data-page="resources">Resources</a>
+                <a href="#help" class="nav-link" data-page="help">Get Help</a>
+            </nav>
+        </div>
+    </header>
 
-        <main id="story-content">
-            <!-- Twine story content will be rendered here -->
-            <div id="passages">
-                <div class="passage active" data-passage="start">
-                    <h2>Welcome</h2>
-                    <p>This is the beginning of your journey into understanding the realities of gambling.</p>
-                    <div class="choices">
-                        <button class="choice-btn" data-target="choice1">Continue</button>
+    <!-- Main Content Area -->
+    <main class="main-content">
+        
+        <!-- Story Page -->
+        <div id="story-page" class="page-content">
+            <div class="story-container">
+                <iframe src="story.html" 
+                        title="All In - Interactive Story"
+                        class="story-frame"
+                        allowfullscreen>
+                    <p>Your browser doesn't support iframes. <a href="story-debug.html">Click here to view the story directly</a>.</p>
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Home (formerly About) Page -->
+        <div id="home-page" class="page-content active">
+            <div class="page-header">
+                <h2>Welcome to All In</h2>
+            </div>
+            <div class="content-section">
+                <p>All In is an interactive awareness experience designed to help people understand the complex dynamics of gambling addiction and its impact on relationships.</p>
+
+                <div class="cta">
+                    <a href="#story" data-page="story" class="btn primary nav-link">Start the Interactive Story</a>
+                </div>
+                
+                <h3>How It Works</h3>
+                <p>Through realistic scenarios, you'll face decisions that highlight how gambling addiction affects not just the individual, but their friends, family, and community.</p>
+                
+                <h3>Learning Objectives</h3>
+                <ul>
+                    <li>Recognize signs of gambling addiction</li>
+                    <li>Understand how to support someone with a gambling problem</li>
+                    <li>Learn about healthy boundaries and decision-making</li>
+                    <li>Discover available resources and support systems</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Resources Page -->
+        <div id="resources-page" class="page-content">
+            <div class="page-header">
+                <h2>Resources & Support</h2>
+            </div>
+            <div class="content-section">
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <h3>National Problem Gambling Helpline</h3>
+                        <p class="helpline-number">1-800-522-4700</p>
+                        <p>Free, confidential support 24/7</p>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>Gamblers Anonymous</h3>
+                        <p>Find local meetings and online support groups</p>
+                        <a href="https://www.gamblersanonymous.org" target="_blank">Visit Website</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h3>National Council on Problem Gambling</h3>
+                        <p>Education, advocacy, and resources</p>
+                        <a href="https://www.ncpgambling.org" target="_blank">Visit Website</a>
                     </div>
                 </div>
-
-                <div class="passage" data-passage="choice1">
-                    <h2>The Decision</h2>
-                    <p>Every choice has consequences. Understanding these consequences is the first step toward awareness.</p>
-                    <div class="choices">
-                        <button class="choice-btn" data-target="start">Start Over</button>
-                    </div>
+                
+                <div class="emergency-help">
+                    <h3>Crisis Support</h3>
+                    <p>If you or someone you know is in crisis:</p>
+                    <ul>
+                        <li><strong>Crisis Text Line:</strong> Text HOME to 741741</li>
+                        <li><strong>National Suicide Prevention Lifeline:</strong> 988</li>
+                        <li><strong>Emergency Services:</strong> 911</li>
+                    </ul>
                 </div>
             </div>
-        </main>
+        </div>
 
-        <footer>
-            <p>&copy; 2025 All In - Gambling Awareness Project</p>
-            <p class="disclaimer">This is an educational experience about gambling awareness.</p>
-        </footer>
-    </div>
+        <!-- Help Page -->
+        <div id="help-page" class="page-content">
+            <div class="page-header">
+                <h2>Getting Help</h2>
+            </div>
+            <div class="content-section">
+                <h3>For Yourself</h3>
+                <p>If you think you might have a gambling problem:</p>
+                <ul>
+                    <li>Take an honest self-assessment</li>
+                    <li>Reach out to a trusted friend or family member</li>
+                    <li>Contact a professional counselor or helpline</li>
+                    <li>Consider joining a support group</li>
+                </ul>
+                
+                <h3>For Someone You Care About</h3>
+                <p>If you're concerned about someone else's gambling:</p>
+                <ul>
+                    <li>Express your concerns without judgment</li>
+                    <li>Offer specific support and resources</li>
+                    <li>Set healthy boundaries for yourself</li>
+                    <li>Seek support for yourself as well</li>
+                </ul>
+                
+                <div class="self-assessment">
+                    <h3>Quick Self-Assessment</h3>
+                    <p>Answer these questions honestly:</p>
+                    <ol>
+                        <li>Do you think about gambling often?</li>
+                        <li>Have you tried to cut back or stop gambling but couldn't?</li>
+                        <li>Do you gamble to escape problems or feelings?</li>
+                        <li>Have you lied about your gambling activities?</li>
+                        <li>Has gambling caused problems in your relationships or work?</li>
+                    </ol>
+                    <p><em>If you answered yes to any of these questions, consider reaching out for support.</em></p>
+                </div>
+            </div>
+        </div>
+        
+    </main>
 
-    <!-- Twine Core Engine -->
-    <script src="twine-engine.js"></script>
 </body>
 </html>

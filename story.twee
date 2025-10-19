@@ -1,0 +1,44 @@
+:: StoryTitle
+All In Demo
+
+
+:: StoryData
+{
+  "ifid": "5EA66AA5-71E2-45BE-8123-D9FF0F54B0C6",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Test choice 1",
+  "zoom": 1
+}
+
+
+:: Test Choice 2 {"position":"1025,250","size":"100,100"}
+
+
+
+:: Test Outcome 1 {"position":"750,150","size":"100,100"}
+Your friend eagerly takes the cash and assures you that "you won't regret this." They never bring up the money again.
+
+(text-colour:#eed795)[Decision info: This was likely not the best decision because it fuel's your friend's addiction.
+
+Support info: `[How you could better support your friend if this happend]`]
+
+[[Next->Test Choice 2]]
+
+
+:: Test Outcome 2 {"position":"750,375","size":"100,100"}
+You tell your friend that you dfon't feel comfortable lending them money for a bet. They roll their eyes and decide to ask someone else.
+
+(text-colour:#eed795)[Decision info: This was a better option.
+
+Support info: `[How this choice helped support your friend]`]
+
+[[Next->Test Choice 2]]]
+
+
+:: Test choice 1 {"position":"575,275","size":"100,100"}
+Your friend asks to borrow $300 for a "sure-fire bet".
+
+[[Give them the money->Test Outcome 1]]
+
+[[Politely decline->Test Outcome 2]]

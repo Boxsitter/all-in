@@ -1,0 +1,177 @@
+/* Custom styles for Twine story - overrides default Harlowe styling */
+
+/* Main story container - make it seamless with your site */
+tw-story {
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif !important;
+    background-color: transparent !important;
+    color: #333 !important;
+    line-height: 1.7 !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    font-size: 1.125rem !important; /* slightly larger base size for readability */
+}
+
+/* Individual passage styling - clean card-like appearance */
+tw-passage {
+    background: white !important;
+    border-radius: 8px !important;
+    padding: 2rem !important;
+    margin: 1rem 0 !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+    border: none !important;
+    max-width: 800px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    min-height: 300px !important;
+}
+
+/* Story links - will be styled as buttons later in the file */
+
+/* Visited links */
+.visited {
+    color: #6941e1 !important;
+}
+
+.visited:hover {
+    color: #e3e !important;
+}
+
+/* Remove default body margins and set consistent background */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #f5f5f5 !important;
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif !important;
+}
+
+html, body {
+    height: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* Style the sidebar if using a format that has one */
+tw-sidebar {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Special styling for decision feedback text (your yellow text) */
+tw-passage [style*="color:#eed795"],
+tw-passage [style*="colour:#eed795"] {
+    background-color: #fff7d1 !important;
+    border-left: 4px solid #f0d000 !important;
+    padding: 1rem !important;
+    margin: 1.5rem 0 !important;
+    border-radius: 0 6px 6px 0 !important;
+    font-style: italic !important;
+    color: #8b7500 !important;
+    font-size: 0.95em !important;
+    line-height: 1.4 !important;
+}
+
+/* Style code blocks/inline code in feedback */
+tw-passage [style*="color:#eed795"] code,
+tw-passage [style*="colour:#eed795"] code {
+    background-color: rgba(0,0,0,0.1) !important;
+    padding: 0.2rem 0.4rem !important;
+    border-radius: 3px !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.9em !important;
+}
+
+/* Ensure paragraphs have proper spacing */
+tw-passage p {
+    margin: 1rem 0 !important;
+    font-size: 1.15rem !important;
+    line-height: 1.7 !important;
+}
+
+/* Style any headers that might appear */
+tw-passage h1, tw-passage h2, tw-passage h3 {
+    color: #333 !important;
+    margin: 1.5rem 0 1rem 0 !important;
+    line-height: 1.3 !important;
+}
+
+/* Ensure the story transitions smoothly */
+tw-passage[data-tags] {
+    opacity: 1 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+/* Remove any default margins from the outermost container */
+tw-story tw-passage:first-child {
+    margin-top: 0 !important;
+}
+
+tw-story tw-passage:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    tw-passage {
+        padding: 1.5rem !important;
+        margin: 0.5rem 0 !important;
+        border-radius: 4px !important;
+    }
+    
+    tw-story {
+        padding: 10px !important;
+    }
+    
+    tw-link {
+        margin: 0.3rem 0.3rem 0.3rem 0 !important;
+        padding: 0.3rem 0.6rem !important;
+    }
+}
+
+/* Ensure smooth scrolling if needed */
+tw-story {
+    scroll-behavior: smooth !important;
+}
+
+/* Hide any debug elements */
+tw-debugger {
+    display: none !important;
+}
+
+/* Choice layout: keep normal text left, align buttons on one centered row */
+tw-passage { text-align: left !important; }
+/* Make each paragraph that directly contains a link behave like an inline item */
+tw-passage p:has(> tw-link) {
+    display: inline-block !important;
+    text-align: center !important;
+    margin: 1rem 0.5rem !important;
+}
+/* Center the collection of link paragraphs within the passage */
+tw-passage:has(> p:has(> tw-link)) {
+    text-align: center !important;
+}
+/* Ensure non-choice paragraphs remain left-aligned even if the passage is centered */
+tw-passage p:not(:has(> tw-link)) {
+    text-align: left !important;
+}
+
+/* Make choice links look more like buttons */
+tw-passage tw-link {
+    background-color: #4169e1 !important;
+    color: white !important;
+    border: none !important;
+    padding: 0.8rem 1.5rem !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    display: inline-block !important; /* allow side-by-side */
+    margin: 0.5rem !important;
+    transition: all 0.3s ease !important;
+    min-width: 200px !important;
+    text-align: center !important;
+}
+
+tw-passage tw-link:hover {
+    background-color: #00bfff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(65, 105, 225, 0.3) !important;
+}
